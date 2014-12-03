@@ -159,30 +159,7 @@ long ioctl(struct file *file,
 			
 			bytes = copy_from_user(buddy_pool+current_idx,(char*)ioctl_param, write_len + 1);
 
-         // /* keep writing until some condition breaks us out */
- //         while (1) {
- //
- //             /* get the next byte from userspace */
- //             get_user(ch, (char*)ioctl_param+bytes);
- //
- //             /* if it's a null terminator we are finished writing */
- //             if (ch == '\0') break;
- //
- //             /* if we are about to write outside the page error out */
- //             if (bytes > size) {
- //                 printk(KERN_INFO "vmm: writing out of allocated area\n");
- //                 return -1;
- //             }
- //
- //             /* write the byte into the pool */
- //             *(buddy_pool+current_idx+bytes) = ch;
- //             printk(KERN_INFO "wrote %c to %d\n", ch, current_idx+bytes);
- //
- //             /* go to the next byte */
- //             bytes++;
- //         }
-
-         printk(KERN_INFO "mem: could not write %d bytes\n", bytes);
+         printk(KERN_INFO "mem: could not write %d bytes of %d bytes\n", bytes, write_len + 1);
 
          /* return how many bytes were written */
          return bytes;
@@ -203,7 +180,7 @@ long ioctl(struct file *file,
 			
 			bytes = copy_to_user((char*)ioctl_param, buddy_pool+current_idx, read_len + 1);
 			
-			printk(KERN_INFO "mem: could not read %d bytes\n", bytes);
+			printk(KERN_INFO "mem: could not read %d bytes of %d\n", bytes, read_len + 1);
 			
 		   break;
    case IOCTL_SET_IDX:
