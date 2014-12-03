@@ -1,0 +1,87 @@
+
+bb_init()
+    conn:
+    proto_major = 7
+    proto_minor = 17
+    async_read = 1
+    max_write = 131072
+    max_readahead = 131072
+    capable = 0000007b
+    want = 00000010
+    context:
+    fuse = 08328388
+    uid = 0
+    gid = 0
+    pid = 0
+    private_data = 08327008
+    logfile = 08328020
+    rootdir = /vagrant/fuse-tutorial-2014-06-12/example/rootdir
+    umask = 00000
+
+bb_getattr(path="/", statbuf=0xb6bff190)
+    bb_fullpath:  rootdir = "/vagrant/fuse-tutorial-2014-06-12/example/rootdir", path = "/", fpath = "/vagrant/fuse-tutorial-2014-06-12/example/rootdir/"
+    si:
+    st_dev = 20
+    st_ino = 347
+    st_mode = 040755
+    st_nlink = 1
+    st_uid = 1000
+    st_gid = 1000
+    st_rdev = 0
+    st_size = 102
+    st_blksize = 4096
+    st_blocks = 0
+    st_atime = 0x547400c0
+    st_mtime = 0x5473fe7d
+    st_ctime = 0x5473fe7d
+
+bb_opendir(path="/", fi=0xb753b1d0)
+    bb_fullpath:  rootdir = "/vagrant/fuse-tutorial-2014-06-12/example/rootdir", path = "/", fpath = "/vagrant/fuse-tutorial-2014-06-12/example/rootdir/"
+    fi:
+    flags = 0x00098800
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0xffffffffb6c006e8
+    lock_owner = 0x0000000000000000
+
+bb_readdir(path="/", buf=0xb6c00590, filler=0xb7734d80, offset=0, fi=0xb6bff1c0)
+calling filler with name .
+calling filler with name ..
+calling filler with name bogus.txt
+    fi:
+    flags = 0x00000000
+    fh_old = 0xb6c006e8
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0xffffffffb6c006e8
+    lock_owner = 0x0000000000000000
+
+bb_getattr(path="/bogus.txt", statbuf=0xb753b1a0)
+    bb_fullpath:  rootdir = "/vagrant/fuse-tutorial-2014-06-12/example/rootdir", path = "/bogus.txt", fpath = "/vagrant/fuse-tutorial-2014-06-12/example/rootdir/bogus.txt"
+    si:
+    st_dev = 20
+    st_ino = 348
+    st_mode = 0100644
+    st_nlink = 1
+    st_uid = 1000
+    st_gid = 1000
+    st_rdev = 0
+    st_size = 11
+    st_blksize = 4096
+    st_blocks = 8
+    st_atime = 0x5473ffc2
+    st_mtime = 0x5473ffbb
+    st_ctime = 0x5473ffbb
+
+bb_releasedir(path="/", fi=0xb753b1d0)
+    fi:
+    flags = 0x00000000
+    fh_old = 0xb6c006e8
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0xffffffffb6c006e8
+    lock_owner = 0x0000000000000000

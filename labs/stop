@@ -1,0 +1,3 @@
+#!/bin/sh
+echo unloading module tester_$1.ko
+sudo rmmod tester_$1

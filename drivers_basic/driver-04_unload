@@ -1,0 +1,3 @@
+#!/bin/sh
+sudo rmmod driver-04
+sudo rm -f /dev/arr_dev_04

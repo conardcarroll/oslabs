@@ -1,0 +1,12 @@
+with schedule()
+
+[  258.434221] stat 1 is 99393stat 2 is 607
+[  258.434307] cs1 501234 cs2 505588 cs1+cs2 1006822t1 stop
+
+without schedule()
+
+[  396.437016] stat 1 is 100000
+[  396.437145] cs1 1000000 cs2 0 cs1+cs2 1000000t1 stop
+
+
+

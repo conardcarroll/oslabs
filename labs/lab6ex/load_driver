@@ -1,0 +1,8 @@
+#!/bin/sh
+sudo insmod interface.ko
+MAJOR=`dmesg | tail -n 1 | awk "{print \\$5}"`
+if [ -z $MAJOR ]; then
+   MAJOR=`dmesg | tail -n 1 | awk "{print \\$4}"`
+fi
+sudo mknod /dev/interface c $MAJOR 0
+sudo chmod a+w /dev/interface

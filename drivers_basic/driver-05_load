@@ -1,0 +1,9 @@
+#!/bin/sh
+sudo insmod driver-05.ko
+MAJOR=`dmesg | tail -n 1 | awk "{print \\$5}"`
+if [ -z $MAJOR ]; then
+   MAJOR=`dmesg | tail -n 1 | awk "{print \\$4}"`
+fi
+sudo mknod /dev/arr_dev_05 c $MAJOR 0
+sudo chmod a+w /dev/arr_dev_05
+

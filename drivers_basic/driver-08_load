@@ -1,0 +1,6 @@
+#!/bin/sh
+sudo insmod driver-08.ko
+MAJOR=`dmesg | tail -n 1 | awk "{print \\$5}"`
+sudo mknod /dev/tester1 c $MAJOR 0
+sudo chmod a+w /dev/tester1
+

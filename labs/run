@@ -1,0 +1,3 @@
+#!/bin/sh
+echo loading module tester_$1.ko
+sudo insmod tester_$1.ko

@@ -1,0 +1,1 @@
+cmd_/vagrant/labs/lab3/part2/lab3_part2.ko := ld -r -m elf_i386 -T /usr/src/linux-headers-3.2.0-23-generic-pae/scripts/module-common.lds --build-id  -o /vagrant/labs/lab3/part2/lab3_part2.ko /vagrant/labs/lab3/part2/lab3_part2.o /vagrant/labs/lab3/part2/lab3_part2.mod.o
