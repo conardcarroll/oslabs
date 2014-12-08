@@ -41,7 +41,7 @@ int get_mem(int mem, int size) {return ioctl(mem, IOCTL_GET_MEM, size);}
 int free_mem(int mem, int ref) {return ioctl(mem, IOCTL_FREE_MEM, ref);}
 int write_mem(int mem, int ref, char* buf)
 {
-	printf("write_mem mem %d ref %d buf %s len %d\n", mem, ref, buf, strlen(buf));
+	printf("write_mem mem %d ref %d buf %s\n", mem, ref, buf);
 	int ret = 0;
 	ret = ioctl(mem, IOCTL_SET_IDX, ref);
 	printf("set index %d\n", ret);
@@ -70,17 +70,14 @@ int read_mem(int mem, int ref, char* buf, int size)
 
 
 /* Main - Call the ioctl functions */
-main() {
-   int mem, ret_val;
+int main() {
+   int mem;
    char buffer[4096];
    int ref;
-   char *msg0 = " ";
-   char *msg1 = "Put that in your pipe and smoke it";
-   char *msg2 = "Try this on for size";
    
    mem = open("/dev/mem_dev", 0);
    if (mem < 0) {
-      printf("Can't open device file: /dev/mem_dev%s\n");
+      printf("Can't open device file: /dev/mem_dev\n");
       exit(-1);
    }
    

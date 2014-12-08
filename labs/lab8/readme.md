@@ -1,6 +1,23 @@
 # Lab 8
 ## Remarks
-Luckily the URL at the top of the provided code still works because it definitely helped me down the right track. 
+The implemenation of the buddy system is known, the linux kernel is already doing it. To see some of the
+information just look in /proc/buddyinfo. Unfortunately even trying to use max's existing buddy allocator
+proved to be a fairly difficult task. I'm sure if I wasn't finishing these labs with such a looming deadline
+I would have had the time to ask more questions about composing linux device drivers. I understand that the buddy
+allocator is a suitable memory allocation scheme and has been used appropriately many times in practice. It has the
+advantage of lesser fragmentation between its pages but can still fall victim to fragmentation within its pages based
+on the requests for allocation from other programs. While writing this code I've thought with IOCTL as the hammer 
+everything becomes a nail. I wish I could have found a more elegant solution using the write/read methods but I could not.
+I was able to get the write/read to act correctly, at least as far of the test program in the lab document exercised my code.
+
+I started with driver-07 and attempted to make the read/write methods work, as opposed to the straight ioctl
+calls I ended up with.  At one point I was able to get the read function to at least be called but was never able to
+have the write function be called and anytime I called write() from user land it always returned -1. So I leaned a
+bit more on Max and used his IOCTL scheme replacing the get_user and put_user with copy_from_user and copy_to_user. This proved
+interesing trying to capture and know where the null string terminator was in order to save and return it. I'm sure there is 
+a function or macro which would have done this for me. 
+
+Running the test code from the lab document does 
 
 ##Results
 
@@ -36,13 +53,13 @@ vagrant@precise32:/vagrant/labs/lab8$
 ### run test
 
 *vagrant@precise32:/vagrant/labs/lab8$ ./mem_test*
-write_mem mem 3 ref 0 buf Hello buddy len 11
+write_mem mem 3 ref 0 buf *Hello buddy* len 11
 set index 0
 wrote 0
 set index 0
 set read size 0
 read 0 bytes
-buffer: lo buddy
+*buffer: lo buddy*
 
 *vagrant@precise32:/vagrant/labs/lab8$ dmesg*
 
